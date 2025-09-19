@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConfigState.cpp" />
+    <ClCompile Include="ConsoleLog.cpp" />
     <ClCompile Include="GameWnd.cpp" />
     <ClCompile Include="GameWndManager.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -133,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigState.h" />
+    <ClInclude Include="ConsoleLog.h" />
+    <ClInclude Include="debugAddress.h" />
     <ClInclude Include="GameWnd.h" />
     <ClInclude Include="GameWndManager.h" />
     <ClInclude Include="Logger.h" />

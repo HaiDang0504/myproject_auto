@@ -54,14 +54,11 @@ namespace vtautoui {
 	private: System::Windows::Forms::ColumnHeader^ pName;
 	private: System::Windows::Forms::ColumnHeader^ pHP;
 	private: System::Windows::Forms::ColumnHeader^ pMP;
-	private: System::Windows::Forms::ColumnHeader^ pFightState;
-	private: System::Windows::Forms::ColumnHeader^ pId;
-	private: System::Windows::Forms::ColumnHeader^ pThreadId;
-	private: System::Windows::Forms::ColumnHeader^ hwnd;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Threading::Timer^ myTimer;
-
 	private:
+        private:
+									DWORD debugAddress; // Add this line to define debugAddress
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -74,7 +71,7 @@ namespace vtautoui {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::ListViewItem^ listViewItem1 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(5) {
+			System::Windows::Forms::ListViewItem^ listViewItem2 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(5) {
 				L"",
 					L"Z", L"A", L"B", L"C"
 			}, -1));
@@ -86,17 +83,13 @@ namespace vtautoui {
 			this->pName = (gcnew System::Windows::Forms::ColumnHeader());
 			this->pHP = (gcnew System::Windows::Forms::ColumnHeader());
 			this->pMP = (gcnew System::Windows::Forms::ColumnHeader());
-			this->pFightState = (gcnew System::Windows::Forms::ColumnHeader());
-			this->pId = (gcnew System::Windows::Forms::ColumnHeader());
-			this->pThreadId = (gcnew System::Windows::Forms::ColumnHeader());
-			this->hwnd = (gcnew System::Windows::Forms::ColumnHeader());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// chboxNotifyDeath
 			// 
 			this->chboxNotifyDeath->AutoSize = true;
-			this->chboxNotifyDeath->Location = System::Drawing::Point(245, 391);
+			this->chboxNotifyDeath->Location = System::Drawing::Point(324, 102);
 			this->chboxNotifyDeath->Name = L"chboxNotifyDeath";
 			this->chboxNotifyDeath->Size = System::Drawing::Size(85, 17);
 			this->chboxNotifyDeath->TabIndex = 2;
@@ -116,9 +109,9 @@ namespace vtautoui {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(245, 440);
+			this->button1->Location = System::Drawing::Point(324, 12);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(126, 23);
+			this->button1->Size = System::Drawing::Size(113, 23);
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"Send Message 1";
 			this->button1->UseVisualStyleBackColor = true;
@@ -127,18 +120,18 @@ namespace vtautoui {
 			// lvPlayers
 			// 
 			this->lvPlayers->CheckBoxes = true;
-			this->lvPlayers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(7) {
+			this->lvPlayers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(3) {
 				this->pName, this->pHP,
-					this->pMP, this->pFightState, this->pId, this->pThreadId, this->hwnd
+					this->pMP
 			});
 			this->lvPlayers->FullRowSelect = true;
 			this->lvPlayers->HideSelection = false;
-			listViewItem1->StateImageIndex = 0;
-			this->lvPlayers->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(1) { listViewItem1 });
+			listViewItem2->StateImageIndex = 0;
+			this->lvPlayers->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(1) { listViewItem2 });
 			this->lvPlayers->Location = System::Drawing::Point(12, 12);
 			this->lvPlayers->MultiSelect = false;
 			this->lvPlayers->Name = L"lvPlayers";
-			this->lvPlayers->Size = System::Drawing::Size(544, 303);
+			this->lvPlayers->Size = System::Drawing::Size(267, 228);
 			this->lvPlayers->TabIndex = 6;
 			this->lvPlayers->UseCompatibleStateImageBehavior = false;
 			this->lvPlayers->View = System::Windows::Forms::View::Details;
@@ -148,7 +141,7 @@ namespace vtautoui {
 			// pName
 			// 
 			this->pName->Text = L"Name";
-			this->pName->Width = 89;
+			this->pName->Width = 128;
 			// 
 			// pHP
 			// 
@@ -160,29 +153,9 @@ namespace vtautoui {
 			this->pMP->Text = L"MP";
 			this->pMP->Width = 67;
 			// 
-			// pFightState
-			// 
-			this->pFightState->Text = L"FightState";
-			this->pFightState->Width = 70;
-			// 
-			// pId
-			// 
-			this->pId->Text = L"ProcessID";
-			this->pId->Width = 75;
-			// 
-			// pThreadId
-			// 
-			this->pThreadId->Text = L"ThreadID";
-			this->pThreadId->Width = 81;
-			// 
-			// hwnd
-			// 
-			this->hwnd->Text = L"hwnd";
-			this->hwnd->Width = 89;
-			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(245, 488);
+			this->button2->Location = System::Drawing::Point(324, 54);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(113, 23);
 			this->button2->TabIndex = 7;
@@ -194,7 +167,7 @@ namespace vtautoui {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(568, 523);
+			this->ClientSize = System::Drawing::Size(444, 460);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->lvPlayers);
 			this->Controls->Add(this->button1);
@@ -224,5 +197,6 @@ namespace vtautoui {
 	private: System::Void lvPlayers_ItemChecked(System::Object^ sender, System::Windows::Forms::ItemCheckedEventArgs^ e);
 	private: System::Void lvPlayers_ItemSelectionChanged(System::Object^ sender, System::Windows::Forms::ListViewItemSelectionChangedEventArgs^ e);
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
+	
 	};
 }
