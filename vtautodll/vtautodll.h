@@ -7,6 +7,6 @@
 #endif
 
 extern "C" {
-    VTAUTODLL_API void InjectDll(HWND hwnd, DWORD threadId);
-    VTAUTODLL_API void UnmapDll(HWND hwnd);
+    VTAUTODLL_API int InjectDll(HWND hwnd, DWORD threadId);
+    VTAUTODLL_API int UnmapDll(HWND hwnd);
 }

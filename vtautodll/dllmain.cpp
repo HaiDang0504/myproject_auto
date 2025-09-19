@@ -3,6 +3,9 @@
 #include "vtautodll.h"
 #include <Windows.h>
 
+// External reference to the module handle
+extern HMODULE hDll;
+
 BOOL APIENTRY DllMain(HMODULE hModule,
     DWORD  ul_reason_for_call,
     LPVOID lpReserved
@@ -11,27 +14,13 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
+        hDll = hModule; // Set the DLL module handle
+        break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
         break;
     }
     return TRUE;
-}
-
-extern "C" {
-    VTAUTODLL_API void InjectDll(HWND hwnd, DWORD threadId)
-    {
-        // Placeholder implementation
-        // In real implementation, this would inject the DLL into the target process
-        OutputDebugStringA("InjectDll called");
-    }
-
-    VTAUTODLL_API void UnmapDll(HWND hwnd)
-    {
-        // Placeholder implementation
-        // In real implementation, this would unmap the DLL from the target process
-        OutputDebugStringA("UnmapDll called");
-    }
 }
 

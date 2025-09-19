@@ -1,7 +1,26 @@
 #include "Logger.h"
+#include <Windows.h>
 
 VTAutoLogger::VTAutoLogger() {
-	logFile = "C:\\Users\\nguye\\source\\debugging\\vtauto.log";
+	// Get current executable directory
+	char execPath[MAX_PATH];
+	GetModuleFileNameA(NULL, execPath, MAX_PATH);
+	
+	// Get directory path only (remove executable name)
+	std::string currentDir = execPath;
+	size_t lastSlash = currentDir.find_last_of("\\/");
+	if (lastSlash != std::string::npos) {
+		currentDir = currentDir.substr(0, lastSlash);
+	}
+	
+	// Create logger directory path
+	std::string loggerDir = currentDir + "\\logger";
+	
+	// Create logger directory if it doesn't exist
+	CreateDirectoryA(loggerDir.c_str(), NULL);
+	
+	// Set log file path
+	logFile = loggerDir + "\\vtauto.log";
 }
 
 std::string VTAutoLogger::getCurrentTimestamp() {
@@ -19,8 +38,6 @@ std::string VTAutoLogger::getCurrentTimestamp() {
 	oss << std::put_time(&local_tm, "%Y-%m-%d %H:%M:%S");
 
 	return oss.str();
-
-	return "";
 }
 
 void VTAutoLogger::writeLog(std::string message) {
