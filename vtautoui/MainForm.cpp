@@ -7,8 +7,10 @@
 #include <chrono>
 #include "StrHelper.h"
 #include "../vtautodll/vtautodll.h"
+#include <Psapi.h>
 
 #pragma comment(lib, "user32.lib")
+#pragma comment(lib, "psapi.lib")
 
 using namespace std;
 using namespace std::chrono;
@@ -19,6 +21,7 @@ System::Void vtautoui::MainForm::MainForm_Load(System::Object^ sender, System::E
 	this->logger = new VTAutoLogger();
 	this->wndManager = new GameWndManager(this->logger);
 	this->myTimer = gcnew System::Threading::Timer(gcnew TimerCallback(this, &MainForm::OnTimerTick), nullptr, 0, 500); // 0 initial delay, 500ms interval
+	
 	this->logger->writeLog("************************** VTAuto App started **************************");
 	Console::WriteLine("[VTAuto] ************************** VTAuto App started **************************");
 }

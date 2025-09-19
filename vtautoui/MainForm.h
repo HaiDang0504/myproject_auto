@@ -56,8 +56,9 @@ namespace vtautoui {
 	private: System::Windows::Forms::ColumnHeader^ pMP;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Threading::Timer^ myTimer;
-
 	private:
+        private:
+									DWORD debugAddress; // Add this line to define debugAddress
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -196,5 +197,6 @@ namespace vtautoui {
 	private: System::Void lvPlayers_ItemChecked(System::Object^ sender, System::Windows::Forms::ItemCheckedEventArgs^ e);
 	private: System::Void lvPlayers_ItemSelectionChanged(System::Object^ sender, System::Windows::Forms::ListViewItemSelectionChangedEventArgs^ e);
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
+	
 	};
 }

@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="ConfigState.h" />
     <ClInclude Include="ConsoleLog.h" />
+    <ClInclude Include="debugAddress.h" />
     <ClInclude Include="GameWnd.h" />
     <ClInclude Include="GameWndManager.h" />
     <ClInclude Include="Logger.h" />
